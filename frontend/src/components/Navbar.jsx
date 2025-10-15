@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 import UploadSection from "./UploadSection";
 
@@ -11,17 +12,22 @@ function Navbar() {
 
         {/* Navigation Links */}
         <div className="nav-links">
-          <a href="/">Home</a>
-          <a href="/blog">Blog</a>
-          <a href="/about">About</a>
+          <Link to="/">Home</Link>
+          <Link to="/team">Our Team</Link>
+          <Link to="/about">About</Link>
         </div>
 
         {/* Buttons */}
         <div className="nav-buttons">
-          <button className="btn signup-btn">Signup</button>
-          <button className="btn login-btn">Login</button>
+          <Link to="/signup" className="btn signup-btn">
+            Signup
+          </Link>
+          <Link to="/login" className="btn login-btn">
+            Login
+          </Link>
         </div>
       </nav>
+
       <UploadSection />
     </>
   );

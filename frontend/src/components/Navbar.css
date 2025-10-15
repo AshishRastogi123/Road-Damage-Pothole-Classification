@@ -4,9 +4,9 @@
   justify-content: space-between;
   align-items: center;
   padding: 16px 40px;
-  background: linear-gradient(90deg, #1e3a8a, #2563eb); /* nice blue gradient */
+  background: linear-gradient(90deg, #1e3a8a, #2563eb); /* blue gradient */
   color: white;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -14,48 +14,54 @@
 
 /* Logo styling */
 .logo {
-  font-size: 1.75rem; /* bigger font */
+  font-size: 1.75rem;
   font-weight: bold;
   letter-spacing: 1px;
 }
 
 /* Navigation links */
+.nav-links {
+  display: flex;
+  gap: 24px;
+}
+
 .nav-links a {
-  margin-right: 24px;
   color: white;
   text-decoration: none;
   font-weight: 500;
   transition: all 0.3s ease;
 }
 
-.nav-links a:last-child {
-  margin-right: 0;
-}
-
 .nav-links a:hover {
-  color: #facc15; /* Tailwind yellow-400 for hover effect */
+  color: #facc15; /* yellow hover */
   transform: scale(1.05);
 }
 
 /* Buttons container */
-.nav-buttons .btn {
-  margin-left: 16px;
+.nav-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+/* Common button style */
+.btn {
   padding: 8px 18px;
   font-weight: 500;
   border-radius: 8px;
   cursor: pointer;
   border: none;
+  text-decoration: none;
   transition: all 0.3s ease;
 }
 
 /* Signup button */
 .signup-btn {
-  background-color: #f59e0b; /* Tailwind amber-500 */
+  background-color: #f59e0b; /* amber */
   color: white;
 }
 
 .signup-btn:hover {
-  background-color: #b45309; /* darker amber */
+  background-color: #b45309;
   transform: scale(1.05);
 }
 
@@ -81,22 +87,14 @@
   }
 
   .nav-links {
-    margin-top: 12px;
-    display: flex;
     flex-direction: column;
-  }
-
-  .nav-links a {
-    margin: 6px 0;
+    gap: 10px;
+    margin-top: 10px;
   }
 
   .nav-buttons {
-    margin-top: 12px;
-    display: flex;
     flex-direction: column;
-  }
-
-  .nav-buttons .btn {
-    margin: 6px 0;
+    gap: 10px;
+    margin-top: 10px;
   }
 }
