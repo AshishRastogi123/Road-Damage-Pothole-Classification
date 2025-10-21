@@ -8,11 +8,29 @@ function Login() {
 
   const handleLogin = (e) => {
     e.preventDefault();
+
     if (!email || !password) {
       setMessage("Please enter both email and password");
     } else {
-      setMessage("Login successful!");
-      console.log({ email, password });
+      fetch("http://localhost:5000/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setMessage(data.message);
+          console.log("Server response:", data);
+
+          if (data.success) {
+            // Example: Redirect to home page
+            window.location.href = "/";
+          }
+        })
+        .catch((err) => {
+          console.error("Error:", err);
+          setMessage("Something went wrong. Try again!");
+        });
     }
   };
 
@@ -43,7 +61,7 @@ function Login() {
           Don't have an account? <a href="/signup">Sign Up</a>
         </p>
         <p className="signup-link">
-          Back to Home <a href="/">🏠︎</a>
+          Back to Home <a href="/">🏠</a>
         </p>
       </form>
     </div>
