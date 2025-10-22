@@ -35,7 +35,7 @@ It aims to assist local authorities and citizens in identifying road damages ear
 |-------|------------------|
 | **Frontend** | HTML, CSS, JavaScript |
 | **Backend** | Flask / Django |
-| **Machine Learning** | TensorFlow / Keras / OpenCV |
+| **deep Learning** | TensorFlow / Keras  |
 | **Dataset** | Road damage images (custom or public dataset) |
 ---
 
