@@ -28,5 +28,10 @@
     "fullName": "Anuj kumar",
     "email": "rastogianuj@gmail.com",
     "password": "anuj123"
+  },
+  {
+    "fullName": "prem kumar",
+    "email": "prem@gmail.com",
+    "password": "prem123"
   }
 ]
