@@ -33,5 +33,20 @@
     "fullName": "prem kumar",
     "email": "prem@gmail.com",
     "password": "prem123"
+  },
+  {
+    "fullName": "Manju",
+    "email": "manjurajpoot880@gmail.com",
+    "password": "manju234"
+  },
+  {
+    "fullName": "Harsh Sharma",
+    "email": "hs20042021@gmail.com",
+    "password": "Deep@123"
+  },
+  {
+    "fullName": "Prem ",
+    "email": "prem@1234gmail.com",
+    "password": "1234"
   }
 ]
