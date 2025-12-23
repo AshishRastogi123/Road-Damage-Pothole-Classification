@@ -1,25 +1,27 @@
 import React, { useState } from "react";
 import "./Signup.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 
 function Signup() {
-  const [fullName, setFullName] = useState("");
+  const [name, setname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
+  const nevigate=useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/signup", {
+      const response = await fetch("http://localhost:3000/api/auth/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          fullName,
+          name,
           email,
           password,
           confirmPassword,
@@ -28,11 +30,14 @@ function Signup() {
 
       const data = await response.json();
       setMessage(data.message);
+      alert("Sign Up successfull")
+      nevigate("/login");
     } catch (error) {
       console.error("Error:", error);
       setMessage("Server error. Please try again later.");
     }
   };
+
 
   return (
     <div className="signup-container">
@@ -45,8 +50,8 @@ function Signup() {
           <input
             type="text"
             placeholder="Full Name"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
+            value={name}
+            onChange={(e) => setname(e.target.value)}
             required
           />
           <input

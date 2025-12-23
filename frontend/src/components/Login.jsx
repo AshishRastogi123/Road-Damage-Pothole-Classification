@@ -11,7 +11,7 @@ function Login() {
     if (!email || !password) {
       setMessage("Please enter both email and password");
     } else {
-      fetch("http://localhost:5000/login", {
+      fetch("http://localhost:3000/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
