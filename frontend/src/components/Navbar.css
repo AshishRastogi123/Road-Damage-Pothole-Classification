@@ -98,3 +98,24 @@
     margin-top: 10px;
   }
 }
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-icon {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.username {
+  font-weight: 500;
+}
+
+.logout-btn {
+  background-color: #ff4d4d;
+  color: white;
+}

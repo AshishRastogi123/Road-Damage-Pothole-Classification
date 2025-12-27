@@ -1,35 +1,40 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import "./Login.css";
+
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     if (!email || !password) {
       setMessage("Please enter both email and password");
-    } else {
-      fetch("http://localhost:3000/login", {
+      return;
+    }
+
+    try {
+      const response = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          setMessage(data.message);
-          console.log("Server response:", data);
+      });
 
-          if (data.success) {
-            // Example: Redirect to home page
-            window.location.href = "/";
-          }
-        })
-        .catch((err) => {
-          console.error("Error:", err);
-          setMessage("Something went wrong. Try again!");
-        });
+      const data = await response.json();
+      setMessage(data.message);
+
+      if (response.ok && data.user) {
+        login(data.user);
+        navigate("/");
+      }
+    } catch (err) {
+      console.error("Error:", err);
+      setMessage("Something went wrong. Try again!");
     }
   };
 

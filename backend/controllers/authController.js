@@ -62,7 +62,7 @@ exports.login = async (req, res) => {
     // Create JWT token
     const token = jwt.sign(
       { userId: user._id, email: user.email },
-      process.env.JWT_SECRET || "your-secret-key",
+      process.env.JWT_SECRET ,
       { expiresIn: "7d" }
     );
 
@@ -81,10 +81,40 @@ exports.login = async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
+        profilePhoto: user.profilePhoto || null, // Include profile photo if available
       },
     });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error" });
+  }
+};
+
+// Verify Token API
+exports.verifyToken = async (req, res) => {
+  try {
+    const token = req.headers.authorization?.split(' ')[1];
+    if (!token) {
+      return res.status(401).json({ message: "No token provided" });
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || "your-secret-key");
+    const user = await User.findById(decoded.userId);
+
+    if (!user) {
+      return res.status(401).json({ message: "Invalid token" });
+    }
+
+    res.status(200).json({
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        profilePhoto: user.profilePhoto || null,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(401).json({ message: "Invalid token" });
   }
 };
