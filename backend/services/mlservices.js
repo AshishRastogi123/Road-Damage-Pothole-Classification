@@ -1,16 +1,18 @@
 import axios from "axios";
-import FormData from "form-data";
 
-export const sendImageToML = async (imageBuffer) => {
+export const sendImageToML = async (file) => {
   const formData = new FormData();
-  formData.append("image", imageBuffer, {
-    filename: "image.jpg",
-  });
+  formData.append("image", file);
 
   const response = await axios.post(
-    "http://localhost:5000/predict",
+    "https://YOUR-NGROK-URL.ngrok-free.dev/predict",
     formData,
-    { headers: formData.getHeaders() }
+    {
+      headers: {
+        "ngrok-skip-browser-warning": "true"
+        // ❌ Content-Type mat set karo
+      }
+    }
   );
 
   return response.data;
